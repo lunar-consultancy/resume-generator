@@ -1,0 +1,1022 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Resume Schema",
+  "description": "JSON Schema definition for Resume",
+  "type": "object",
+  "properties": {
+    "basics": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "phone": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "headline": {
+          "$ref": "#/$defs/i18nString"
+        },
+        "location": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "date-of-birth": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "headline"
+      ]
+    },
+    "company": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "phone": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "location": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "theme": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "headings-text": {
+              "type": "string"
+            },
+            "header-text": {
+              "type": "string"
+            },
+            "header-background": {
+              "type": "string"
+            },
+            "font": {
+              "type": "object",
+              "properties": {
+                "family": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "size": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "files": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "file": {
+                        "type": "string"
+                      },
+                      "style": {
+                        "type": "string"
+                      },
+                      "weight": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "file",
+                      "style",
+                      "weight"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "family",
+                "size",
+                "files"
+              ]
+            }
+          },
+          "required": [
+            "text",
+            "headings-text",
+            "header-text",
+            "header-background"
+          ]
+        },
+        "layout": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sections": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "timeline-width": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "theme",
+        "layout"
+      ]
+    },
+    "sections": {
+      "type": "object",
+      "properties": {
+        "awards": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/section"
+            }
+          ]
+        },
+        "certifications": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/section"
+            }
+          ]
+        },
+        "educations": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/section"
+            }
+          ]
+        },
+        "experiences": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/section"
+            }
+          ]
+        },
+        "interests": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/section"
+            }
+          ]
+        },
+        "languages": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/section"
+            }
+          ]
+        },
+        "projects": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/section"
+            }
+          ]
+        },
+        "publications": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/section"
+            }
+          ]
+        },
+        "references": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/section"
+            }
+          ]
+        },
+        "skills": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/section"
+            }
+          ]
+        },
+        "summary": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/section"
+            }
+          ]
+        },
+        "volunteer": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/section"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "required": [
+    "basics",
+    "company",
+    "metadata",
+    "sections"
+  ],
+  "$defs": {
+    "section": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "$ref": "#/$defs/i18nString"
+        },
+        "visible": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "const": "awards"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "awarder": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "summary": {
+                      "oneOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "$ref": "#/$defs/i18nString"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "visible": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "date",
+                    "title",
+                    "awarder"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "const": "certifications"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "name": {
+                      "$ref": "#/$defs/i18nString"
+                    },
+                    "issuer": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "summary": {
+                      "oneOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "$ref": "#/$defs/i18nString"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "visible": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "const": "education"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "area": {
+                      "oneOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "$ref": "#/$defs/i18nString"
+                        }
+                      ]
+                    },
+                    "institution": {
+                      "oneOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "$ref": "#/$defs/i18nString"
+                        }
+                      ]
+                    },
+                    "year": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "date-start": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "date-end": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "score": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "summary": {
+                      "oneOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "$ref": "#/$defs/i18nString"
+                        }
+                      ]
+                    },
+                    "studyType": {
+                      "$ref": "#/$defs/i18nString"
+                    },
+                    "url": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "visible": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "institution",
+                    "summary",
+                    "studyType"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "const": "experience"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/position"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "const": "interests"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "$ref": "#/$defs/i18nString"
+                    },
+                    "keywords": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/$defs/i18nString"
+                      }
+                    },
+                    "visible": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "keywords"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "const": "languages"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "$ref": "#/$defs/i18nString"
+                    },
+                    "description": {
+                      "oneOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "$ref": "#/$defs/i18nString"
+                        }
+                      ]
+                    },
+                    "level": {
+                      "type": "integer"
+                    },
+                    "visible": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "level"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "const": "projects"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/position"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "const": "publications"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "$ref": "#/$defs/i18nString"
+                    },
+                    "publisher": {
+                      "type": "string"
+                    },
+                    "summary": {
+                      "$ref": "#/$defs/i18nString"
+                    },
+                    "url": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "visible": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "date",
+                    "name",
+                    "summary"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "const": "references"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "$ref": "#/$defs/i18nString"
+                    },
+                    "summary": {
+                      "oneOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "$ref": "#/$defs/i18nString"
+                        }
+                      ]
+                    },
+                    "description": {
+                      "oneOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "$ref": "#/$defs/i18nString"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "visible": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "summary"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "const": "skills"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "$ref": "#/$defs/i18nString"
+                    },
+                    "description": {
+                      "oneOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "$ref": "#/$defs/i18nString"
+                        }
+                      ]
+                    },
+                    "keywords": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/$defs/i18nString"
+                      }
+                    },
+                    "visible": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "keywords"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "const": "summary"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/i18nString"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "const": "motivation"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/i18nString"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "const": "profiles"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string"
+                    },
+                    "icon": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "visible": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "username",
+                    "icon",
+                    "url"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "const": "volunteer"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/position"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "position": {
+      "type": "object",
+      "properties": {
+        "date-start": {
+          "type": "string"
+        },
+        "date-end": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "organisation": {
+          "$ref": "#/$defs/i18nString"
+        },
+        "position": {
+          "$ref": "#/$defs/i18nString"
+        },
+        "summary": {
+          "$ref": "#/$defs/i18nString"
+        },
+        "activities": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "$ref": "#/$defs/i18nString"
+                },
+                "activities": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/i18nString"
+                  }
+                }
+              },
+              "required": [
+                "text",
+                "activities"
+              ]
+            }
+          ]
+        },
+        "location": {
+          "$ref": "#/$defs/i18nString"
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "visible": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "date-start",
+        "organisation",
+        "position",
+        "summary",
+        "location"
+      ]
+    },
+    "i18nString": {
+      "type": "object",
+      "properties": {
+        "en": {
+          "type": "string"
+        },
+        "nl": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "en",
+        "nl"
+      ]
+    }
+  }
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}"
+      th:with="currentPage='edit'">
+<body>
+<div class="jse-theme-dark" layout:fragment="content">
+  <p class="lead pt-4 d-grid gap-2 d-sm-flex justify-content-sm-center">
+    <button id="save" class="btn btn-sm btn-light fw-bold border-white bg-white">Save</button>
+  </p>
+  <div id="jsoneditor"></div>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/jse-theme-dark.min.css}" />
+  <script th:src="@{/js/ajv2020.bundle.min.js}"></script>
+  <script type="module" th:inline="javascript">
+    import { JSONEditor } from '/js/standalone.min.js';
+    import { createAjvValidator } from '/js/standalone.min.js';
+
+    const Ajv = window.ajv2020;
+
+    let content = {
+      text: undefined,
+      json: /*[[${resume}]]*/ {},
+    };
+
+    new JSONEditor({
+      target: document.getElementById('jsoneditor'),
+      props: {
+        content,
+        validator: createAjvValidator({
+          schema: JSON.parse(/*[[${resumeSchema}]]*/ '{}'),
+          schemaDefinitions: {},
+          onCreateAjv: () => new Ajv(),
+        }),
+        onChange: (updatedContent, previousContent, {contentErrors, patchResult}) => {
+          console.log(contentErrors);
+          if (contentErrors && contentErrors['validationErrors'] && contentErrors['validationErrors'].length > 0) {
+            $('#save').attr('disabled', true);
+          } else {
+            content = updatedContent;
+            $('#save').removeAttr('disabled');
+          }
+        },
+      },
+    });
+
+    $('#save').on('click', () =>
+      $.ajax({
+        type: 'POST',
+        url: '/resume',
+        contentType: 'application/json',
+        data: JSON.stringify(content.json),
+        cache: false,
+        success: () => $('#save').attr('disabled', true),
+        error: (error) => console.error(error),
+      }),
+    );
+  </script>
+</div>
+</body>
+</html>

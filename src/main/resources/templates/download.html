@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}"
+      th:with="currentPage='download'">
+<body>
+<div class="cover-container w-100 mx-auto" layout:fragment="content">
+  <p class="lead pt-4 d-grid gap-2 d-sm-flex justify-content-sm-center">
+    <select id="language" class="form-select form-select-sm w-25">
+      <option value="" selected>Select language</option>
+      <option th:each="i18n : ${i18ns}" th:value="${i18n.id}" th:text="${i18n.name}"></option>
+    </select>
+    <button id="download" class="btn btn-sm btn-light fw-bold border-white bg-white" disabled>Download</button>
+  </p>
+  <div id="pdf"></div>
+
+  <script th:src="@{/js/FileSaver.min.js}"></script>
+  <script type="module" th:inline="javascript">
+    const saveAs = window.saveAs;
+    let i18nId = null;
+
+    $('#language').on('change', (event) => {
+      i18nId = event.target.value;
+      if (i18nId !== '') {
+        $('#download').removeAttr('disabled');
+        if ($('embed')) {
+          $('embed').remove();
+          $('#pdf').append('<embed src="/pdf?lang=' + i18nId + '" type="application/pdf" scrolling="auto" style="width:100%;height:70vh;" />');
+        }
+      } else {
+        $('#download').attr('disabled', true);
+        if ($('embed')) {
+          $('embed').remove();
+        }
+      }
+    });
+
+    $('#download').on('click', () => {
+      if (i18nId) {
+        saveAs('/pdf?lang=' + i18nId, 'Resume ' + i18nId + '.pdf');
+      }
+    });
+  </script>
+
+</div>
+</body>
+</html>

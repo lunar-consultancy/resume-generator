@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}"
+      th:with="currentPage='home'">
+<body>
+<div layout:fragment="content">
+  <h1>Resume</h1>
+  <p class="lead">To edit, generate and download resume.</p>
+  <p class="lead d-grid gap-2 d-sm-flex justify-content-center">
+    <a href="/edit" class="btn btn-lg btn-light fw-bold border-white bg-white">Edit</a>
+    <a href="/download" class="btn btn-lg btn-light fw-bold border-white bg-white">Download</a>
+  </p>
+</div>
+</body>
+</html>

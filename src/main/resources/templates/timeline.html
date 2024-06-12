@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      th:lang="${#locale.language}"
+      th:xmllang="${#locale.language}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=10" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Timeline</title>
+  <style th:inline="css" th:each="font : ${fonts}">
+      @font-face {
+          font-family: "[(${fontFamily})]";
+          font-weight: /*[(${font.weight})]*/ normal;
+          font-style: /*[(${font.style})]*/ normal;
+          src: url(data:application/x-font-ttf;charset=utf-8;base64,[[${font.data}]]) format('ttf');
+      }
+  </style>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/d3-milestones.css}" />
+  <style th:inline="css">
+      html, body {
+          font-family: "[(${fontFamily})]", sans-serif;
+          margin: 0;
+      }
+
+      .timeline {
+          width: /*[(${timelineWidth})]*/ 500px;
+          position: absolute;
+      }
+  </style>
+</head>
+<body>
+<div id="timeline" class="timeline"></div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/js/d3-milestones.js}"></script>
+<script th:src="@{/js/html2canvas.min.js}"></script>
+<script th:src="@{/js/application.js}"></script>
+<script th:inline="javascript">
+  $(document).ready(() => {
+    const language = /*[[${#locale.language}]]*/ 'en';
+    const data = /*[[${data}]]*/ {};
+    console.log(data);
+    update(language, data);
+
+    html2canvas(document.querySelector('.timeline'))
+      .then(canvas => canvas.toBlob((blob) => {
+          document.body.appendChild(canvas);
+          const formData = new FormData();
+          formData.append('timeline', blob, 'timeline.png');
+          $.ajax({
+            type: 'POST',
+            url: '/timeline',
+            data: formData,
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: () => {
+              console.log('Timeline uploaded');
+            },
+            error: (e) => {
+              console.log('ERROR : ', e);
+            },
+          });
+        }),
+      );
+  });
+</script>
+</body>
+</html>

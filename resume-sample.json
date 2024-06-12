@@ -1,0 +1,507 @@
+{
+  "basics": {
+    "name": "Your name",
+    "email": "example@a-domain.com",
+    "phone": "+0123456789",
+    "url": "https://www.a-domain.com",
+    "headline": {
+      "en": "Experienced ...: ...",
+      "nl": "Ervaren ...: ..."
+    },
+    "location": "City",
+    "date-of-birth": "1970-01-01",
+    "profile-image-location": "file:/profile.jpg"
+  },
+  "company": {
+    "name": "Company name",
+    "email": "info@company.com",
+    "phone": "+0123456789",
+    "url": "https://www.company.com",
+    "location": "City"
+  },
+  "metadata": {
+    "theme": {
+      "text": "#000000",
+      "font": {
+        "family": "A font",
+        "size": "10pt",
+        "files": [
+          {
+            "file": "file:/font.ttf",
+            "style": "normal",
+            "weight": "regular"
+          },
+          {
+            "file": "file:/font.ttf",
+            "style": "normal",
+            "weight": "bold"
+          }
+        ]
+      },
+      "headings-text": "#ca8a04",
+      "header-text": "#ffffff",
+      "header-background": "#0891b2"
+    },
+    "layout": [
+      {
+        "sections": [
+          "summary",
+          "motivation",
+          "timeline",
+          "projects",
+          "experiences"
+        ]
+      },
+      {
+        "sections": [
+          "profiles",
+          "skills",
+          "certifications",
+          "interests",
+          "languages",
+          "educations",
+          "employers",
+          "volunteer",
+          "references"
+        ]
+      }
+    ],
+    "timeline-width": "600px"
+  },
+  "sections": {
+    "awards": {
+      "id": "awards",
+      "name": {
+        "en": "Awards",
+        "nl": "Onderscheidingen"
+      },
+      "visible": true,
+      "items": [
+        {
+          "visible": true,
+          "date": "2016-01-01",
+          "title": "Award 1",
+          "awarder": "The Awarder",
+          "summary": {
+            "en": "The summary",
+            "nl": "The summary"
+          },
+          "url": null
+        }
+      ]
+    },
+    "skills": {
+      "id": "skills",
+      "name": {
+        "en": "Skills",
+        "nl": "Vaardigheden"
+      },
+      "visible": true,
+      "items": [
+        {
+          "visible": true,
+          "name": {
+            "en": "Functions performed",
+            "nl": "Uitgevoerde functies"
+          },
+          "description": null,
+          "keywords": [
+            {
+              "en": "Function",
+              "nl": "Functie"
+            }
+          ]
+        },
+        {
+          "visible": true,
+          "name": {
+            "en": "Branche experience",
+            "nl": "Branche ervaring"
+          },
+          "description": null,
+          "keywords": [
+            {
+              "en": "A sector",
+              "nl": "Een sector"
+            }
+          ]
+        }
+      ]
+    },
+    "summary": {
+      "id": "summary",
+      "name": {
+        "en": "Profile sketch",
+        "nl": "Profielschets"
+      },
+      "visible": true,
+      "content": [
+        {
+          "en": "A profile sketch.",
+          "nl": "Een profiel schets."
+        }
+      ]
+    },
+    "motivation": {
+      "id": "motivation",
+      "name": {
+        "en": "Motivation",
+        "nl": "Motivatie"
+      },
+      "visible": true,
+      "content": [
+        {
+          "en": "A motivation",
+          "nl": "Een motivatie"
+        }
+      ]
+    },
+    "timeline": {
+      "id": "timeline",
+      "name": {
+        "en": "A visual timeline of my work experience",
+        "nl": "Een visuele tijdlijn van mijn werkervaring"
+      },
+      "visible": true
+    },
+    "profiles": {
+      "id": "profiles",
+      "name": {
+        "en": "Profiles",
+        "nl": "Profielen"
+      },
+      "visible": true,
+      "items": [
+        {
+          "visible": true,
+          "network": "linkedin",
+          "username": "john-doe",
+          "icon": "",
+          "url": "https://www.linkedin.com/in/john-doe/"
+        },
+        {
+          "visible": true,
+          "network": "github",
+          "username": "john-doe",
+          "icon": "",
+          "url": "https://github.com/john-doe"
+        }
+      ]
+    },
+    "employers": {
+      "id": "employers",
+      "name": {
+        "en": "Employers",
+        "nl": "Werkgevers"
+      },
+      "visible": true,
+      "items": [
+        {
+          "visible": true,
+          "organisation": {
+            "en": "Organisation",
+            "nl": "Organisatie"
+          },
+          "position": {
+            "en": "Position/Role",
+            "nl": "Positie/Rol"
+          },
+          "summary": {
+            "en": "A summary",
+            "nl": "A samenvatting"
+          },
+          "activities": {
+            "text": {
+              "en": "Activities",
+              "nl": "Activiteiten"
+            },
+            "activities": [
+              {
+                "en": "Activity",
+                "nl": "Activiteit"
+              }
+            ]
+          },
+          "location": {
+            "en": "Location",
+            "nl": "Plaats"
+          },
+          "url": "https://www.organisation.com",
+          "keywords": [
+            "keyword"
+          ],
+          "date-start": "2023-01-01",
+          "date-end": null
+        }
+      ]
+    },
+    "projects": {
+      "id": "projects",
+      "name": {
+        "en": "Projects",
+        "nl": "Projecten"
+      },
+      "visible": true,
+      "items": [
+        {
+          "visible": true,
+          "organisation": {
+            "en": "Organisation",
+            "nl": "Organisatie"
+          },
+          "position": {
+            "en": "Position/Role",
+            "nl": "Positie/Rol"
+          },
+          "summary": {
+            "en": "A summary",
+            "nl": "A samenvatting"
+          },
+          "activities": {
+            "text": {
+              "en": "Activities",
+              "nl": "Activiteiten"
+            },
+            "activities": [
+              {
+                "en": "Activity",
+                "nl": "Activiteit"
+              }
+            ]
+          },
+          "location": {
+            "en": "Location",
+            "nl": "Plaats"
+          },
+          "url": "https://www.organisation.com",
+          "keywords": [
+            "keyword"
+          ],
+          "date-start": "2023-01-01",
+          "date-end": "2023-12-01"
+        }
+      ]
+    },
+    "educations": {
+      "id": "educations",
+      "name": {
+        "en": "Education",
+        "nl": "Opleidingen"
+      },
+      "visible": true,
+      "items": [
+        {
+          "visible": true,
+          "area": {
+            "en": "Area/City",
+            "nl": "Omgeving/Plaats"
+          },
+          "institution": {
+            "en": "Institution",
+            "nl": "Institutie"
+          },
+          "year": "2022",
+          "score": "10",
+          "summary": {
+            "en": "Summary",
+            "nl": "Samenvatting"
+          },
+          "url": "https://www.intistution.com",
+          "date-start": null,
+          "date-end": null,
+          "study-type": {
+            "en": "Study subject/type",
+            "nl": "Opleiding onderwerp/type"
+          }
+        }
+      ]
+    },
+    "languages": {
+      "id": "languages",
+      "name": {
+        "en": "Languages",
+        "nl": "Talen"
+      },
+      "visible": true,
+      "items": [
+        {
+          "visible": true,
+          "name": {
+            "en": "Dutch",
+            "nl": "Nederlands"
+          },
+          "description": null,
+          "level": 5
+        },
+        {
+          "visible": true,
+          "name": {
+            "nl": "Engels",
+            "en": "Englisch"
+          },
+          "description": null,
+          "level": 4
+        }
+      ]
+    },
+    "volunteer": {
+      "id": "volunteer",
+      "name": {
+        "en": "Volunteering",
+        "nl": "Vrijwilligerswerk"
+      },
+      "visible": true,
+      "items": [
+        {
+          "visible": true,
+          "organisation": {
+            "en": "Organisation",
+            "nl": "Organisatie"
+          },
+          "position": {
+            "en": "Position/Role",
+            "nl": "Positie/Rol"
+          },
+          "summary": {
+            "en": "A summary",
+            "nl": "A samenvatting"
+          },
+          "activities": {
+            "text": {
+              "en": "Activities",
+              "nl": "Activiteiten"
+            },
+            "activities": [
+              {
+                "en": "Activity",
+                "nl": "Activiteit"
+              }
+            ]
+          },
+          "location": {
+            "en": "Location",
+            "nl": "Plaats"
+          },
+          "url": "https://www.organisation.com",
+          "keywords": [
+            "keyword"
+          ],
+          "date-start": "2023-01-01",
+          "date-end": "2023-12-01"
+        }
+      ]
+    },
+    "experiences": {
+      "id": "experiences",
+      "name": {
+        "en": "Experience",
+        "nl": "Ervaring"
+      },
+      "visible": false,
+      "items": [
+        {
+          "visible": true,
+          "organisation": {
+            "en": "Organisation",
+            "nl": "Organisatie"
+          },
+          "position": {
+            "en": "Position/Role",
+            "nl": "Positie/Rol"
+          },
+          "summary": {
+            "en": "A summary",
+            "nl": "A samenvatting"
+          },
+          "activities": {
+            "text": {
+              "en": "Activities",
+              "nl": "Activiteiten"
+            },
+            "activities": [
+              {
+                "en": "Activity",
+                "nl": "Activiteit"
+              }
+            ]
+          },
+          "location": {
+            "en": "Location",
+            "nl": "Plaats"
+          },
+          "url": "https://www.organisation.com",
+          "keywords": [
+            "keyword"
+          ],
+          "date-start": "2023-01-01",
+          "date-end": "2023-12-01"
+        }
+      ]
+    },
+    "references": {
+      "id": "references",
+      "name": {
+        "en": "References",
+        "nl": "Referenties"
+      },
+      "visible": true,
+      "items": [
+        {
+          "visible": true,
+          "name": {
+            "en": "Available upon request",
+            "nl": "Beschikbaar op aanvraag"
+          },
+          "summary": null,
+          "description": null,
+          "url": null
+        }
+      ]
+    },
+    "publications": {
+      "id": "publications",
+      "name": {
+        "en": "Publications",
+        "nl": "Publicaties"
+      },
+      "visible": true,
+      "items": [
+        {
+          "visible": true,
+          "date": "2024-04-01",
+          "name": {
+            "nl": "A publication",
+            "en": "A publication"
+          },
+          "publisher": "Myself",
+          "summary": {
+            "nl": "The summary",
+            "en": "The summary"
+          },
+          "url": "https://www.example.com"
+        }
+      ]
+    },
+    "certifications": {
+      "id": "certifications",
+      "name": {
+        "en": "Certifications",
+        "nl": "Certificeringen"
+      },
+      "visible": true,
+      "items": [
+        {
+          "visible": true,
+          "date": "",
+          "name": {
+            "en": "Drivers license",
+            "nl": "Rijbewijs"
+          },
+          "issuer": "",
+          "summary": null,
+          "url": ""
+        }
+      ]
+    }
+  }
+}

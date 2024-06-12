@@ -1,0 +1,5 @@
+spring:
+  application.name: resume
+  messages.basename: messages
+  servlet.multipart.enabled: true
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      th:lang="${#locale.language}"
+      th:xmllang="${#locale.language}"
+      class="h-100">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=10" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Resume</title>
+  <style th:inline="css" th:each="font : ${fonts}">
+      @font-face {
+          font-family: "[(${fontFamily})]";
+          font-weight: /*[(${font.weight})]*/ normal;
+          font-style: /*[(${font.style})]*/ normal;
+          src: url(data:application/x-font-ttf;charset=utf-8;base64,[[${font.data}]]) format('ttf');
+      }
+  </style>
+  <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/application.css}" />
+  <style th:inline="css">
+      html, body {
+          font-family: "[(${fontFamily})]", sans-serif;
+      }
+  </style>
+</head>
+<body class="d-flex h-100 text-center text-bg-dark">
+<div class="d-flex flex-column justify-content-center w-100 h-100 p-3">
+  <header class="cover-container mx-auto mb-auto w-100">
+    <h3 class="float-md-start mb-0">Resume</h3>
+    <nav class="nav nav-masthead justify-content-center float-md-end">
+      <a class="nav-link fw-bold py-1 px-0" th:classappend="${currentPage == 'home'}? 'active' : null"
+         href="/">Home</a>
+      <a class="nav-link fw-bold py-1 px-0" th:classappend="${currentPage == 'edit'}? 'active' : null"
+         href="/edit">Edit</a>
+      <a class="nav-link fw-bold py-1 px-0" th:classappend="${currentPage == 'download'}? 'active' : null"
+         href="/download">Download</a>
+      <!--        <a class="nav-link fw-bold py-1 px-0" href="#">Contact</a>-->
+    </nav>
+  </header>
+  <main class="px-3" id="content" layout:fragment="content">MAIN</main>
+  <footer class="cover-container mx-auto mt-auto w-100 text-white-50">
+    <p><a href="https://www.lunar-consultancy.com/" class="text-white">Lunar Consultancy</a></p>
+  </footer>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/js/application.js}"></script>
+</body>
+</html>
