@@ -661,65 +661,21 @@
     <xsl:param name="main"/>
     <xsl:call-template name="title"/>
     <xsl:for-each select="items/*">
-      <fo:block>
+      <xsl:if test=" visible = 'true'">
         <fo:block>
-          <xsl:apply-templates select=".">
-            <xsl:with-param name="main">
-              <xsl:value-of select="$main"/>
-            </xsl:with-param>
-            <xsl:with-param name="big">true</xsl:with-param>
-          </xsl:apply-templates>
-          <fo:block font-weight="bold">
-            <xsl:if test="$main = 'true'">
-              <xsl:attribute name="text-align-last">justify</xsl:attribute>
-            </xsl:if>
-            <fo:inline>
-              <xsl:value-of select="organisation//*[name() = $language]"/>
-            </fo:inline>
-            <xsl:choose>
-              <xsl:when test="$main = 'true'">
-                <fo:leader leader-pattern="space"/>
-              </xsl:when>
-              <xsl:otherwise>
-                <fo:block>
-                  <xsl:text/>
-                </fo:block>
-              </xsl:otherwise>
-            </xsl:choose>
-            <fo:inline>
-              <xsl:value-of select="dateFormatter:convertMonthYear(date-start, $language)"/>
-            </fo:inline>
-            <xsl:choose>
-              <xsl:when test="$language = 'en'">
-                <xsl:text> to </xsl:text>
-              </xsl:when>
-              <xsl:when test="$language = 'nl'">
-                <xsl:text> t/m </xsl:text>
-              </xsl:when>
-            </xsl:choose>
-            <xsl:choose>
-              <xsl:when test="date-end != ''">
-                <xsl:value-of select="dateFormatter:convertMonthYear(date-end, $language)"/>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:choose>
-                  <xsl:when test="$language = 'en'">
-                    <xsl:text>present day</xsl:text>
-                  </xsl:when>
-                  <xsl:when test="$language = 'nl'">
-                    <xsl:text>heden</xsl:text>
-                  </xsl:when>
-                </xsl:choose>
-              </xsl:otherwise>
-            </xsl:choose>
-          </fo:block>
-          <xsl:if test="position//*[name() = $language] != '' or location//*[name() = $language] != ''">
-            <fo:block>
+          <fo:block>
+            <xsl:apply-templates select=".">
+              <xsl:with-param name="main">
+                <xsl:value-of select="$main"/>
+              </xsl:with-param>
+              <xsl:with-param name="big">true</xsl:with-param>
+            </xsl:apply-templates>
+            <fo:block font-weight="bold">
               <xsl:if test="$main = 'true'">
                 <xsl:attribute name="text-align-last">justify</xsl:attribute>
               </xsl:if>
               <fo:inline>
-                <xsl:value-of select="position//*[name() = $language]"/>
+                <xsl:value-of select="organisation//*[name() = $language]"/>
               </fo:inline>
               <xsl:choose>
                 <xsl:when test="$main = 'true'">
@@ -732,59 +688,105 @@
                 </xsl:otherwise>
               </xsl:choose>
               <fo:inline>
-                <xsl:value-of select="location//*[name() = $language]"/>
+                <xsl:value-of select="dateFormatter:convertMonthYear(date-start, $language)"/>
               </fo:inline>
+              <xsl:choose>
+                <xsl:when test="$language = 'en'">
+                  <xsl:text> to </xsl:text>
+                </xsl:when>
+                <xsl:when test="$language = 'nl'">
+                  <xsl:text> t/m </xsl:text>
+                </xsl:when>
+              </xsl:choose>
+              <xsl:choose>
+                <xsl:when test="date-end != ''">
+                  <xsl:value-of select="dateFormatter:convertMonthYear(date-end, $language)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:choose>
+                    <xsl:when test="$language = 'en'">
+                      <xsl:text>present day</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$language = 'nl'">
+                      <xsl:text>heden</xsl:text>
+                    </xsl:when>
+                  </xsl:choose>
+                </xsl:otherwise>
+              </xsl:choose>
+            </fo:block>
+            <xsl:if test="position//*[name() = $language] != '' or location//*[name() = $language] != ''">
+              <fo:block>
+                <xsl:if test="$main = 'true'">
+                  <xsl:attribute name="text-align-last">justify</xsl:attribute>
+                </xsl:if>
+                <fo:inline>
+                  <xsl:value-of select="position//*[name() = $language]"/>
+                </fo:inline>
+                <xsl:choose>
+                  <xsl:when test="$main = 'true'">
+                    <fo:leader leader-pattern="space"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <fo:block>
+                      <xsl:text/>
+                    </fo:block>
+                  </xsl:otherwise>
+                </xsl:choose>
+                <fo:inline>
+                  <xsl:value-of select="location//*[name() = $language]"/>
+                </fo:inline>
+              </fo:block>
+            </xsl:if>
+            <fo:block>
+              <xsl:call-template name="url"/>
+            </fo:block>
+          </fo:block>
+          <xsl:if test="summary//*[name() = $language] != '' or activities//text/*[name() = $language] != '' or (keywords != 'null' and keywords[1] != '')">
+            <fo:block>
+              <xsl:apply-templates select=".">
+                <xsl:with-param name="main">
+                  <xsl:value-of select="$main"/>
+                </xsl:with-param>
+              </xsl:apply-templates>
+              <xsl:if test="summary//*[name() = $language] != ''">
+                <fo:block linefeed-treatment="preserve">
+                  <xsl:value-of select="summary[1]//*[name() = $language]"/>
+                </fo:block>
+              </xsl:if>
+              <xsl:if test="activities//text/*[name() = $language] != ''">
+                <fo:block margin-top="5pt">
+                  <xsl:value-of select="activities/text//*[name() = $language]"/>
+                </fo:block>
+                <xsl:if test="activities//activities[1]/*[name() = $language] != ''">
+                  <fo:list-block>
+                    <xsl:for-each select="activities/activities/*">
+                      <fo:list-item>
+                        <fo:list-item-label>
+                          <fo:block font-family="Phosphor" font-weight="bold" color="{$headingsTextColor}">
+                            <xsl:text>&#xECDE;</xsl:text>
+                          </fo:block>
+                        </fo:list-item-label>
+                        <fo:list-item-body margin-left="10pt">
+                          <fo:block linefeed-treatment="preserve">
+                            <xsl:value-of select=".//*[name() = $language]"/>
+                          </fo:block>
+                        </fo:list-item-body>
+                      </fo:list-item>
+                    </xsl:for-each>
+                  </fo:list-block>
+                </xsl:if>
+              </xsl:if>
+              <xsl:if test="keywords != 'null' and keywords[1] != ''">
+                <fo:block font-size="8pt">
+                  <xsl:call-template name="keywords">
+                    <xsl:with-param name="i18n">false</xsl:with-param>
+                  </xsl:call-template>
+                </fo:block>
+              </xsl:if>
             </fo:block>
           </xsl:if>
-          <fo:block>
-            <xsl:call-template name="url"/>
-          </fo:block>
         </fo:block>
-        <xsl:if test="summary//*[name() = $language] != '' or activities//text/*[name() = $language] != '' or (keywords != 'null' and keywords[1] != '')">
-          <fo:block>
-            <xsl:apply-templates select=".">
-              <xsl:with-param name="main">
-                <xsl:value-of select="$main"/>
-              </xsl:with-param>
-            </xsl:apply-templates>
-            <xsl:if test="summary//*[name() = $language] != ''">
-              <fo:block linefeed-treatment="preserve">
-                <xsl:value-of select="summary[1]//*[name() = $language]"/>
-              </fo:block>
-            </xsl:if>
-            <xsl:if test="activities//text/*[name() = $language] != ''">
-              <fo:block margin-top="5pt">
-                <xsl:value-of select="activities/text//*[name() = $language]"/>
-              </fo:block>
-              <xsl:if test="activities//activities[1]/*[name() = $language] != ''">
-                <fo:list-block>
-                  <xsl:for-each select="activities/activities/*">
-                    <fo:list-item>
-                      <fo:list-item-label>
-                        <fo:block font-family="Phosphor" font-weight="bold" color="{$headingsTextColor}">
-                          <xsl:text>&#xECDE;</xsl:text>
-                        </fo:block>
-                      </fo:list-item-label>
-                      <fo:list-item-body margin-left="10pt">
-                        <fo:block linefeed-treatment="preserve">
-                          <xsl:value-of select=".//*[name() = $language]"/>
-                        </fo:block>
-                      </fo:list-item-body>
-                    </fo:list-item>
-                  </xsl:for-each>
-                </fo:list-block>
-              </xsl:if>
-            </xsl:if>
-            <xsl:if test="keywords != 'null' and keywords[1] != ''">
-              <fo:block font-size="8pt">
-                <xsl:call-template name="keywords">
-                  <xsl:with-param name="i18n">false</xsl:with-param>
-                </xsl:call-template>
-              </fo:block>
-            </xsl:if>
-          </fo:block>
-        </xsl:if>
-      </fo:block>
+      </xsl:if>
     </xsl:for-each>
   </xsl:template>
 
