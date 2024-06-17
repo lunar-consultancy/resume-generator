@@ -2,7 +2,7 @@ stages:
   - build
 
 build:
-  image: maven:3.8-openjdk-11
+  image: maven:3.9-sapmachine-22
   stage: build
   script:
     - mvn clean install
